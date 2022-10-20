@@ -19,4 +19,11 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ApplicationUsers\Constants\" />
+    <Folder Include="Features\OperationClaims\Profiles\" />
+    <Folder Include="Features\ProgrammingLanguages\Constants\" />
+    <Folder Include="Features\Technologies\Constants\" />
+  </ItemGroup>
+
 </Project>

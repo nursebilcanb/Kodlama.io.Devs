@@ -39,6 +39,47 @@ namespace Persistence.Migrations
 
                     b.ToTable("ProgrammingLanguages", (string)null);
                 });
+
+            modelBuilder.Entity("Domain.Entities.Technology", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<int>("ProgrammingLanguageId")
+                        .HasColumnType("int")
+                        .HasColumnName("ProgrammingLanguageId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgrammingLanguageId");
+
+                    b.ToTable("Technologies", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Technology", b =>
+                {
+                    b.HasOne("Domain.Entities.ProgrammingLanguage", "ProgrammingLanguage")
+                        .WithMany("Technologies")
+                        .HasForeignKey("ProgrammingLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProgrammingLanguage");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ProgrammingLanguage", b =>
+                {
+                    b.Navigation("Technologies");
+                });
 #pragma warning restore 612, 618
         }
     }

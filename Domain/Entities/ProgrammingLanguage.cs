@@ -11,15 +11,17 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
 
+        public virtual ICollection<Technology> Technologies { get; set; }
+
         public ProgrammingLanguage()
         {
-
+            Technologies = new HashSet<Technology>();  
         }
 
         public ProgrammingLanguage(string name, int id) : this()
         {
-            Name = name;
             Id = id;
+            Name = name;
         }
     }
 }
